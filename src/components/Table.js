@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -15,7 +16,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveAsIcon from "@mui/icons-material/SaveAs";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import Search from "./Search";
 import AppPagination from "./Pagination";
 
@@ -47,12 +48,11 @@ const TableData = () => {
     const { name, checked } = event.target;
 
     if (name === "allselect") {
-       const startIndex = (page - 1) * itemsPerPage;
+      const startIndex = (page - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       const currentPageData = userData.slice(startIndex, endIndex);
-      //const updatedData = userData.map((user) => ({ ...user, isChecked: checked }));
       const newData = userData.map((user) =>
-      currentPageData.includes(user) ? { ...user, isChecked: checked } : user
+        currentPageData.includes(user) ? { ...user, isChecked: checked } : user
       );
       setUserData(newData);
     } else {
@@ -64,9 +64,9 @@ const TableData = () => {
   };
 
   const deleteUserData = (selectedUserId) => {
-    const userLeft  = userData.filter((user) => user.id !== selectedUserId);
+    const userLeft = userData.filter((user) => user.id !== selectedUserId);
     setUserData(userLeft);
-    setTableData(userLeft)
+    setTableData(userLeft);
   };
 
   const deleteUserSelected = () => {
@@ -77,16 +77,16 @@ const TableData = () => {
   const performSearch = (searchQuery) => {
     const filteredResults = userData.filter(
       (item) =>
-      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.role.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      
-      setUserData(filteredResults);
-      setPage(1);
-      if (searchQuery === "") {
-        setUserData(tableData);
-      }
+        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.role.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setUserData(filteredResults);
+    setPage(1);
+    if (searchQuery === "") {
+      setUserData(tableData);
+    }
   };
 
   const handleUpdate = (e) => {
@@ -100,7 +100,6 @@ const TableData = () => {
       user.id === current.id ? { ...user, [name]: value } : user
     );
     setUserData(updatedData);
-    setTableData(updatedData)
   };
 
   const renderEditableRow = (current) => (
@@ -139,8 +138,8 @@ const TableData = () => {
         <IconButton aria-label="edit" type="submit" size="small">
           <SaveAsIcon size="small" />
         </IconButton>
-        <IconButton aria-label="edit" type="submit"  size="small">
-        <CloseIcon color="primary" size="small" ></CloseIcon>
+        <IconButton aria-label="edit" type="submit" size="small">
+          <CloseIcon color="primary" size="small" />
         </IconButton>
       </TableCell>
     </TableRow>
@@ -163,13 +162,11 @@ const TableData = () => {
         <TableContainer>
           <Table sx={{ width: "90%", margin: "auto" }} size="small" aria-label="a dense table">
             <TableHead>
-              <TableRow>
+              <TableRow className="header">
                 <TableCell align="left" sx={{ textDecorationThickness: 5 }}>
                   <Checkbox
                     name="allselect"
-                    checked={
-                      userData.some((user) =>user.isChecked)
-                    }
+                    checked={userData.some((user) => user.isChecked)}
                     onChange={handleCheckboxChange}
                   />
                 </TableCell>
@@ -184,7 +181,7 @@ const TableData = () => {
                 user.id === editId ? (
                   renderEditableRow(user)
                 ) : (
-                  <TableRow key={user.id}>
+                  <TableRow key={user.id} className={user?.isChecked?"backgroundcolor":""}>
                     <TableCell align="left" component="th" scope="row">
                       <Checkbox
                         onChange={handleCheckboxChange}
@@ -218,7 +215,7 @@ const TableData = () => {
           </Table>
         </TableContainer>
       </form>
-      <Stack direction="row" justifyContent="space-evenly">
+      <Stack direction="row" justifyContent="space-evenly" sx={{ marginTop: '10px' }}>
         <Button variant="contained" onClick={deleteUserSelected}>
           Delete Selected
         </Button>

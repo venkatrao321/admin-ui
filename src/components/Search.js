@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-const Search = (props) => {
-  function searchedValueFunc(e) {
-    props.searchfun(e.target.value);
-  }
+const Search = ({ searchfun }) => {
+  const handleSearch = (e) => {
+    searchfun(e.target.value);
+  };
 
   return (
     <Box
@@ -14,13 +14,12 @@ const Search = (props) => {
       }}
       noValidate
       autoComplete="off"
-      
     >
       <TextField
         id="search"
-        onChange={searchedValueFunc}
+        onChange={handleSearch}
         type="search"
-        placeholder="Search by Name Email and Role"
+        placeholder="Search by Name, Email, and Role"
       />
     </Box>
   );

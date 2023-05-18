@@ -1,22 +1,25 @@
+import React from "react";
 import Pagination from "@mui/material/Pagination";
-const AppPagination = (props) => {
+
+const AppPagination = ({ setPage, userLength, itemsPerPage }) => {
   const handleChangePage = (event, newPage) => {
-    props.setPage(newPage);
+    setPage(newPage);
   };
+
+  const totalPages = Math.ceil(userLength / itemsPerPage);
+
   return (
-    <>
-        <Pagination
-          className="paginationUi"
-          count={Math.ceil(props.userLength / props.itemsPerPage)}
-          size="mediam"
-          color="primary"
-          variant="outlined"
-          showFirstButton
-          showLastButton
-          onChange={handleChangePage}
-        />
-     
-    </>
+    <Pagination
+      className="paginationUi"
+      count={totalPages}
+      size="medium"
+      color="primary"
+      variant="outlined"
+      showFirstButton
+      showLastButton
+      onChange={handleChangePage}
+    />
   );
 };
+
 export default AppPagination;

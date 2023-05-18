@@ -23,15 +23,25 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.header > th {
+  font-weight: bold;
+}
+.backgroundcolor {
+  background-color: rgba(0, 0, 0, 0.04);
+}
 .App-link {
   color: #61dafb;
 }
-.paginationUi{
-  width: 56rem;
+.paginationUi {
+  width: 66rem;
+  margin-top: 2px;
 }
-.paginationUi> ui{
- justify-content: center;
+.paginationUi > ul {
+  justify-content: center;
+}
+.paginationUi > ul > li > button {
+  padding: 0px 20px;
+  margin: 0 10px;
 }
 @keyframes App-logo-spin {
   from {

@@ -27,7 +27,12 @@
 .App-link {
   color: #61dafb;
 }
-
+.paginationUi{
+  width: 56rem;
+}
+.paginationUi> ui{
+ justify-content: center;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
